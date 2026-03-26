@@ -3,13 +3,26 @@ import * as cheerio from 'cheerio';
 import { Pool } from 'pg';
 import * as dotenv from 'dotenv';
 import pLimit from 'p-limit';
+import express from 'express';
 
 dotenv.config();
 
+// ── Database ──
 const db = new Pool({
   connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
+  max: 3,
 });
 
+db.on('error', (err) => console.error('Unexpected DB error:', err));
+
+// ── Server ──
+const app = express();
+const PORT = parseInt(process.env.PORT || '3000', 10);
+
+app.use(express.json());
+
+// ── Helpers ──
 function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -33,6 +46,15 @@ function assignPriorityAction(band: string): string {
   return map[band] || 'Review Required';
 }
 
+function scheduleNextRun(): Date {
+  const now = new Date();
+  const next = new Date(now);
+  next.setUTCHours(2, 0, 0, 0);
+  if (next <= now) next.setDate(next.getDate() + 1);
+  return next;
+}
+
+// ── Scoring Logic ──
 async function crawlAndScore(url: string) {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
@@ -185,14 +207,30 @@ async function crawlAndScore(url: string) {
   };
 }
 
-async function main() {
-  console.log('🚀 Starting WNS SEO Crawler...');
+// ── Core Crawl Job ──
+async function runCrawl() {
+  console.log(`[${new Date().toISOString()}] 🚀 Starting WNS SEO Crawler...`);
 
-  const { rows } = await db.query(`
+  let { rows } = await db.query(`
     SELECT url FROM wns_seo_content_assets
     WHERE crawler_status = 'pending'
     ORDER BY no ASC
   `);
+
+  if (rows.length === 0) {
+    const result = await db.query(`
+      SELECT url FROM wns_seo_content_assets
+      WHERE crawler_status = 'crawled'
+      ORDER BY last_crawled_at ASC NULLS FIRST
+      LIMIT 50
+    `);
+    rows = result.rows;
+    if (rows.length === 0) {
+      console.log('No URLs found in database. Waiting for next scheduled run.');
+      return;
+    }
+    console.log(`No pending URLs. Will recrawl ${rows.length} previously crawled pages.`);
+  }
 
   console.log(`📋 Found ${rows.length} pages to crawl`);
 
@@ -258,7 +296,80 @@ async function main() {
   );
 
   console.log(`\n🎉 Crawler finished! ✅ ${count} crawled, ❌ ${failed} failed`);
-  await db.end();
 }
 
-main();
+// ── Scheduler ──
+let isRunning = false;
+
+async function scheduler() {
+  console.log('📅 Scheduler started. Next run:', scheduleNextRun().toISOString());
+
+  // Run immediately on startup
+  if (!isRunning) {
+    isRunning = true;
+    try {
+      await runCrawl();
+    } finally {
+      isRunning = false;
+    }
+  }
+
+  // Then run every 24 hours
+  setInterval(async () => {
+    if (!isRunning) {
+      isRunning = true;
+      try {
+        await runCrawl();
+      } finally {
+        isRunning = false;
+      }
+    } else {
+      console.log('⏭️  Crawl already in progress, skipping scheduled run.');
+    }
+  }, 24 * 60 * 60 * 1000);
+}
+
+// ── Routes ──
+
+// Health check — Railway probes this
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString(), crawling: isRunning });
+});
+
+// Manual trigger
+app.post('/trigger', (req, res) => {
+  if (isRunning) {
+    return res.status(409).json({ error: 'Crawl already in progress' });
+  }
+  res.json({ message: 'Crawl triggered!' });
+  isRunning = true;
+  runCrawl().finally(() => { isRunning = false; });
+});
+
+// Get crawl status
+app.get('/status', async (req, res) => {
+  try {
+    const { rows } = await db.query(`
+      SELECT
+        COUNT(*) FILTER (WHERE crawler_status = 'crawled') as crawled,
+        COUNT(*) FILTER (WHERE crawler_status = 'pending') as pending,
+        COUNT(*) FILTER (WHERE crawler_status = 'failed') as failed,
+        COUNT(*) as total,
+        MAX(last_crawled_at) as last_run
+      FROM wns_seo_content_assets
+    `);
+    res.json({
+      crawling: isRunning,
+      nextScheduledRun: scheduleNextRun().toISOString(),
+      database: rows[0]
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'Database error', details: String(err) });
+  }
+});
+
+// ── Start ──
+app.listen(PORT, () => {
+  console.log(`🌐 Server running on port ${PORT}`);
+  scheduler();
+});
