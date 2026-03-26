@@ -6,8 +6,8 @@
   "main": "dist/crawler.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/crawler.js",
-    "dev": "ts-node src/crawler.ts",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
     "crawl": "npm run dev",
     "typecheck": "tsc --noEmit"
   },
