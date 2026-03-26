@@ -16,6 +16,69 @@ const db = new Pool({
 
 db.on('error', (err) => console.error('Unexpected DB error:', err));
 
+// ── Init: Create table if not exists ──
+async function initDb() {
+  await db.query(`
+    CREATE TABLE IF NOT EXISTS wns_seo_content_assets (
+      no SERIAL PRIMARY KEY,
+      url TEXT UNIQUE NOT NULL,
+      asset_type TEXT,
+      industry TEXT,
+      function_area TEXT,
+      published_date DATE,
+      auditor TEXT,
+      audit_date TEXT,
+      a1_word_count INTEGER,
+      a2_freshness INTEGER,
+      a3_original_data INTEGER,
+      a4_depth_of_insight INTEGER,
+      a5_reading_level INTEGER,
+      a6_author_byline INTEGER,
+      a7_read_time_shown INTEGER,
+      b1_h1_tag INTEGER,
+      b2_meta_title INTEGER,
+      b3_meta_description INTEGER,
+      b4_url_slug INTEGER,
+      b5_internal_links INTEGER,
+      b6_schema_markup INTEGER,
+      c1_definition_block INTEGER,
+      c2_faq_section INTEGER,
+      c3_lists_tables INTEGER,
+      c4_answer_ready_passages INTEGER,
+      c5_named_entities INTEGER,
+      c6_speakable_content INTEGER,
+      c7_multimedia INTEGER,
+      d1_third_party_validation INTEGER,
+      d2_client_proof_points INTEGER,
+      d3_regulatory_refs INTEGER,
+      d4_industry_depth INTEGER,
+      e1_cta_quality INTEGER,
+      e2_related_content INTEGER,
+      e3_mobile_page_exp INTEGER,
+      f1_wns_framework INTEGER,
+      f2_quantified_outcome INTEGER,
+      f3_wns_tool_platform INTEGER,
+      cat_a_score INTEGER,
+      cat_b_score INTEGER,
+      cat_c_score INTEGER,
+      cat_d_score INTEGER,
+      cat_e_score INTEGER,
+      cat_f_score INTEGER,
+      total_score INTEGER,
+      band TEXT,
+      priority_action TEXT,
+      notes_recommendations TEXT,
+      crawler_status TEXT DEFAULT 'pending',
+      http_status INTEGER,
+      final_url TEXT,
+      last_crawled_at TIMESTAMPTZ,
+      content_hash TEXT,
+      load_time_ms INTEGER
+    )
+  `);
+  console.log('✅ Database table initialized');
+}
+
 // ── Server ──
 const app = express();
 const PORT = parseInt(process.env.PORT || '3000', 10);
@@ -369,7 +432,13 @@ app.get('/status', async (req, res) => {
 });
 
 // ── Start ──
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🌐 Server running on port ${PORT}`);
-  scheduler();
+  try {
+    await initDb();
+    scheduler();
+  } catch (err) {
+    console.error('❌ Failed to initialize database:', err);
+    process.exit(1);
+  }
 });
