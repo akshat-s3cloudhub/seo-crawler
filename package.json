@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "description": "SEO crawler worker for scoring pages and storing results in PostgreSQL.",
-  "main": "dist/src/crawler.js",
+  "main": "dist/crawler.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/src/crawler.js",
+    "start": "node dist/crawler.js",
     "dev": "ts-node src/crawler.ts",
     "crawl": "npm run dev",
     "typecheck": "tsc --noEmit"
