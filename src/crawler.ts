@@ -192,8 +192,8 @@ function extract(url, html) {
 }
 
 function score(p) {
-  const now = new Date();
-  const age = (d) => d?(now-d)/(1000*60*60*24*30):999;
+  const now = Date.now();
+  const age = (d: Date | null) => (d ? (now - d.getTime()) / (1000 * 60 * 60 * 24 * 30) : 999);
   const eff = p.modDate||p.pubDate;
 
   const a1=p.wc>=1000?2:p.wc>=400?1:0;
