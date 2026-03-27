@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WNS SEO & AEO Dashboard — Complete Project Guide</title>
+<style>
+  :root { --primary:#2563eb; --accent:#7c3aed; --green:#16a34a; --red:#dc2626; --yellow:#d97706; --bg:#f8fafc; --surface:#fff; --border:#e2e8f0; --text:#1e293b; --muted:#64748b; --code-bg:#0f172a; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+  a{color:var(--primary);text-decoration:none;}
+  /* HEADER */
+  .hero{background:linear-gradient(135deg,#1e40af 0%,#7c3aed 100%);color:#fff;padding:60px 40px;text-align:center;}
+  .hero h1{font-size:2.4rem;font-weight:800;letter-spacing:-0.5px;margin-bottom:12px;}
+  .hero p{font-size:1.1rem;opacity:.85;max-width:700px;margin:0 auto 20px;}
+  .badge-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px;}
+  .badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:4px 14px;font-size:.8rem;font-weight:600;}
+  /* NAV */
+  nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 40px;position:sticky;top:0;z-index:100;}
+  nav ul{display:flex;list-style:none;gap:0;overflow-x:auto;}
+  nav li a{display:block;padding:14px 16px;font-size:.82rem;font-weight:600;color:var(--muted);white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s;}
+  nav li a:hover{color:var(--primary);border-color:var(--primary);}
+  /* LAYOUT */
+  .container{max-width:1100px;margin:0 auto;padding:40px 24px;}
+  section{margin-bottom:60px;}
+  h2{font-size:1.7rem;font-weight:800;color:var(--text);margin-bottom:20px;padding-bottom:10px;border-bottom:3px solid var(--primary);display:flex;align-items:center;gap:10px;}
+  h3{font-size:1.15rem;font-weight:700;color:var(--text);margin:28px 0 12px;}
+  h4{font-size:1rem;font-weight:700;color:var(--muted);margin:20px 0 8px;text-transform:uppercase;letter-spacing:.5px;}
+  p{margin-bottom:12px;color:var(--text);}
+  /* CARDS */
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.05);}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;}
+  .stat-card .num{font-size:2rem;font-weight:800;color:var(--primary);}
+  .stat-card .lbl{font-size:.82rem;color:var(--muted);margin-top:4px;}
+  /* TABLES */
+  table{width:100%;border-collapse:collapse;font-size:.88rem;margin-bottom:20px;}
+  th{background:var(--bg);padding:10px 14px;text-align:left;font-weight:700;border-bottom:2px solid var(--border);color:var(--muted);text-transform:uppercase;font-size:.75rem;letter-spacing:.5px;}
+  td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:#f1f5f9;}
+  /* CODE */
+  pre{background:var(--code-bg);color:#e2e8f0;padding:20px;border-radius:10px;overflow-x:auto;font-size:.82rem;margin-bottom:16px;line-height:1.6;}
+  code{font-family:'Fira Code','Consolas',monospace;}
+  .inline-code{background:#f1f5f9;color:#7c3aed;padding:2px 7px;border-radius:5px;font-family:'Fira Code',monospace;font-size:.82rem;}
+  /* BAND BADGES */
+  .band{display:inline-block;padding:3px 12px;border-radius:999px;font-size:.78rem;font-weight:700;}
+  .elite{background:#dcfce7;color:#15803d;}
+  .strong{background:#dbeafe;color:#1d4ed8;}
+  .average{background:#fef9c3;color:#a16207;}
+  .weak{background:#ffedd5;color:#c2410c;}
+  .critical{background:#fee2e2;color:#b91c1c;}
+  /* STEPS */
+  .steps{counter-reset:step;list-style:none;}
+  .steps li{counter-increment:step;padding:16px 16px 16px 56px;position:relative;background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:12px;}
+  .steps li::before{content:counter(step);position:absolute;left:16px;top:50%;transform:translateY(-50%);background:var(--primary);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;}
+  /* CHECKLIST */
+  .check{list-style:none;}
+  .check li{padding:8px 0 8px 28px;position:relative;border-bottom:1px solid var(--border);}
+  .check li:last-child{border:none;}
+  .check li::before{content:"✅";position:absolute;left:0;}
+  /* ALERT BOX */
+  .info-box{background:#eff6ff;border-left:4px solid var(--primary);padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:20px;}
+  .warn-box{background:#fffbeb;border-left:4px solid var(--yellow);padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:20px;}
+  .success-box{background:#f0fdf4;border-left:4px solid var(--green);padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:20px;}
+  /* LOGIC CARD */
+  .logic-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:16px;overflow:hidden;}
+  .logic-header{background:#f8fafc;padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+  .logic-slug{font-family:'Fira Code',monospace;font-weight:700;color:var(--primary);font-size:.9rem;}
+  .logic-body{padding:16px 20px;}
+  .param-tag{display:inline-block;background:#ede9fe;color:#6d28d9;padding:2px 8px;border-radius:5px;font-size:.75rem;font-weight:600;margin:2px;}
+  /* FOOTER */
+  footer{background:var(--code-bg);color:#94a3b8;text-align:center;padding:30px;font-size:.85rem;}
+  /* PRINT */
+  @media print{nav,footer{display:none;}pre{white-space:pre-wrap;}}
+  /* ARCH DIAGRAM */
+  .arch{background:var(--code-bg);color:#e2e8f0;border-radius:12px;padding:28px;font-family:'Fira Code',monospace;font-size:.82rem;line-height:2;overflow-x:auto;}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>🔍 WNS.com SEO & AEO Content Audit Dashboard</h1>
+  <p>Complete Project Documentation — Build Guide, Database Schema, Server Logics, Crawler Setup & Transfer Instructions</p>
+  <div class="badge-row">
+    <span class="badge">📅 March 2026</span>
+    <span class="badge">🏢 RYVR Immersive Co.</span>
+    <span class="badge">📄 832 Pages Audited</span>
+    <span class="badge">⚡ Real-Time Dashboard</span>
+    <span class="badge">🤖 AI / AEO Ready</span>
+    <span class="badge">Platform: Squadbase</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#scoring">Scoring Model</a></li>
+    <li><a href="#database">Database Schema</a></li>
+    <li><a href="#pages">Dashboard Pages</a></li>
+    <li><a href="#serverlogics">Server Logics</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#crawler">Crawler</a></li>
+    <li><a href="#transfer">Transfer Guide</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2>📌 Project Overview</h2>
+    <p>A <strong>real-time SaaS-style SEO &amp; AEO (Answer Engine Optimization) content audit dashboard</strong> built for WNS.com on Squadbase. It audits <strong>832 live content pages</strong>, scores them across 6 categories (60 points total), and provides live monitoring, change detection, alerts, and deep-dive inspection — all auto-refreshing every 30 seconds without any manual page reload.</p>
+    <div class="card-grid">
+      <div class="stat-card"><div class="num">832</div><div class="lbl">Pages Audited</div></div>
+      <div class="stat-card"><div class="num">60</div><div class="lbl">Max Score Per Page</div></div>
+      <div class="stat-card"><div class="num">6</div><div class="lbl">Scoring Categories</div></div>
+      <div class="stat-card"><div class="num">30</div><div class="lbl">Individual Parameters</div></div>
+      <div class="stat-card"><div class="num">4</div><div class="lbl">Dashboard Pages</div></div>
+      <div class="stat-card"><div class="num">13</div><div class="lbl">Server Logic Endpoints</div></div>
+      <div class="stat-card"><div class="num">5</div><div class="lbl">Database Tables</div></div>
+      <div class="stat-card"><div class="num">30s</div><div class="lbl">Live Refresh Interval</div></div>
+    </div>
+
+    <h3>Technology Stack</h3>
+    <table>
+      <tr><th>Layer</th><th>Technology</th></tr>
+      <tr><td>Frontend</td><td>React 19 + TypeScript + Tailwind CSS v4 + shadcn/ui</td></tr>
+      <tr><td>Charts</td><td>Apache ECharts (via EChartsWrapper)</td></tr>
+      <tr><td>Data Fetching</td><td>TanStack Query (React Query) + custom useLiveData hook</td></tr>
+      <tr><td>Backend / API</td><td>Squadbase Server Logics (SQL-based, Hono server)</td></tr>
+      <tr><td>Database</td><td>PostgreSQL (Squadbase DB)</td></tr>
+      <tr><td>Crawler</td><td>Node.js + TypeScript + Playwright + Cheerio</td></tr>
+      <tr><td>Crawler Hosting</td><td>Railway (cloud deployment, cron-scheduled)</td></tr>
+      <tr><td>Platform</td><td>Squadbase (Vite 7 full-stack)</td></tr>
+    </table>
+  </section>
+
+  <!-- SCORING MODEL -->
+  <section id="scoring">
+    <h2>📐 Scoring Model — 60-Point Framework</h2>
+
+    <table>
+      <tr><th>Category</th><th>Label</th><th>Max Score</th><th>Parameters</th></tr>
+      <tr><td><strong>A</strong></td><td>Content Depth &amp; Quality</td><td>14</td><td>7 parameters (A1–A7)</td></tr>
+      <tr><td><strong>B</strong></td><td>On-Page SEO</td><td>12</td><td>6 parameters (B1–B6)</td></tr>
+      <tr><td><strong>C</strong></td><td>AEO Structure</td><td>14</td><td>7 parameters (C1–C7)</td></tr>
+      <tr><td><strong>D</strong></td><td>Authority &amp; Trust</td><td>8</td><td>4 parameters (D1–D4)</td></tr>
+      <tr><td><strong>E</strong></td><td>UX &amp; Engagement</td><td>6</td><td>3 parameters (E1–E3)</td></tr>
+      <tr><td><strong>F</strong></td><td>WNS Brand Signals</td><td>6</td><td>3 parameters (F1–F3)</td></tr>
+      <tr><td colspan="2"><strong>TOTAL</strong></td><td><strong>60</strong></td><td>30 parameters total</td></tr>
+    </table>
+
+    <h3>Score Bands</h3>
+    <table>
+      <tr><th>Band</th><th>Score Range</th><th>Priority Action</th></tr>
+      <tr><td><span class="band elite">🏆 Elite</span></td><td>50–60</td><td>Maintain &amp; replicate across similar content</td></tr>
+      <tr><td><span class="band strong">💪 Strong</span></td><td>40–49</td><td>Minor optimizations, target Elite band</td></tr>
+      <tr><td><span class="band average">📊 Average</span></td><td>30–39</td><td>Targeted improvements to key weak categories</td></tr>
+      <tr><td><span class="band weak">⚠️ Weak</span></td><td>20–29</td><td>Significant rework required across most categories</td></tr>
+      <tr><td><span class="band critical">🚨 Critical</span></td><td>0–19</td><td>Immediate full overhaul or remove/redirect</td></tr>
+    </table>
+
+    <h3>All 30 Parameters</h3>
+    <div class="card">
+      <h4>Category A — Content Depth &amp; Quality (14 pts)</h4>
+      <table>
+        <tr><th>Code</th><th>Parameter</th></tr>
+        <tr><td><span class="inline-code">a1_word_count</span></td><td>Word Count — minimum threshold for depth</td></tr>
+        <tr><td><span class="inline-code">a2_freshness</span></td><td>Content Freshness — recency of information</td></tr>
+        <tr><td><span class="inline-code">a3_original_data</span></td><td>Original Data — proprietary stats/research</td></tr>
+        <tr><td><span class="inline-code">a4_depth_of_insight</span></td><td>Depth of Insight — analytical vs. surface-level</td></tr>
+        <tr><td><span class="inline-code">a5_reading_level</span></td><td>Reading Level — appropriate for target audience</td></tr>
+        <tr><td><span class="inline-code">a6_author_byline</span></td><td>Author Byline — identified authorship</td></tr>
+        <tr><td><span class="inline-code">a7_read_time_shown</span></td><td>Read Time Shown — estimated read time displayed</td></tr>
+      </table>
+      <h4>Category B — On-Page SEO (12 pts)</h4>
+      <table>
+        <tr><th>Code</th><th>Parameter</th></tr>
+        <tr><td><span class="inline-code">b1_h1_tag</span></td><td>H1 Tag — presence and quality</td></tr>
+        <tr><td><span class="inline-code">b2_meta_title</span></td><td>Meta Title — optimized title tag</td></tr>
+        <tr><td><span class="inline-code">b3_meta_description</span></td><td>Meta Description — compelling, keyword-rich</td></tr>
+        <tr><td><span class="inline-code">b4_url_slug</span></td><td>URL Slug — clean, keyword-friendly</td></tr>
+        <tr><td><span class="inline-code">b5_internal_links</span></td><td>Internal Links — quantity and relevance</td></tr>
+        <tr><td><span class="inline-code">b6_schema_markup</span></td><td>Schema Markup — structured data presence</td></tr>
+      </table>
+      <h4>Category C — AEO Structure (14 pts)</h4>
+      <table>
+        <tr><th>Code</th><th>Parameter</th></tr>
+        <tr><td><span class="inline-code">c1_definition_block</span></td><td>Definition Block — clear answer-first structure</td></tr>
+        <tr><td><span class="inline-code">c2_faq_section</span></td><td>FAQ Section — question-answer pairs</td></tr>
+        <tr><td><span class="inline-code">c3_lists_tables</span></td><td>Lists &amp; Tables — structured data presentation</td></tr>
+        <tr><td><span class="inline-code">c4_answer_ready_passages</span></td><td>Answer-Ready Passages — Featured Snippet eligible</td></tr>
+        <tr><td><span class="inline-code">c5_named_entities</span></td><td>Named Entities — people, places, organizations</td></tr>
+        <tr><td><span class="inline-code">c6_speakable_content</span></td><td>Speakable Content — voice search optimized</td></tr>
+        <tr><td><span class="inline-code">c7_multimedia</span></td><td>Multimedia — images, video, infographics</td></tr>
+      </table>
+      <h4>Category D — Authority &amp; Trust (8 pts)</h4>
+      <table>
+        <tr><th>Code</th><th>Parameter</th></tr>
+        <tr><td><span class="inline-code">d1_third_party_validation</span></td><td>Third-Party Validation — external citations</td></tr>
+        <tr><td><span class="inline-code">d2_client_proof_points</span></td><td>Client Proof Points — case references</td></tr>
+        <tr><td><span class="inline-code">d3_regulatory_refs</span></td><td>Regulatory References — compliance mentions</td></tr>
+        <tr><td><span class="inline-code">d4_industry_depth</span></td><td>Industry Depth — vertical-specific expertise shown</td></tr>
+      </table>
+      <h4>Category E — UX &amp; Engagement (6 pts)</h4>
+      <table>
+        <tr><th>Code</th><th>Parameter</th></tr>
+        <tr><td><span class="inline-code">e1_cta_quality</span></td><td>CTA Quality — clear calls to action</td></tr>
+        <tr><td><span class="inline-code">e2_related_content</span></td><td>Related Content — links to relevant pages</td></tr>
+        <tr><td><span class="inline-code">e3_mobile_page_exp</span></td><td>Mobile Page Experience — mobile-friendly</td></tr>
+      </table>
+      <h4>Category F — WNS Brand Signals (6 pts)</h4>
+      <table>
+        <tr><th>Code</th><th>Parameter</th></tr>
+        <tr><td><span class="inline-code">f1_wns_framework</span></td><td>WNS Framework — proprietary methodology mentioned</td></tr>
+        <tr><td><span class="inline-code">f2_quantified_outcome</span></td><td>Quantified Outcomes — measurable results cited</td></tr>
+        <tr><td><span class="inline-code">f3_wns_tool_platform</span></td><td>WNS Tool/Platform — product references</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- DATABASE SCHEMA -->
+  <section id="database">
+    <h2>🗄️ Database Schema (PostgreSQL)</h2>
+
+    <div class="info-box">
+      <strong>Connection:</strong> Squadbase DB (PostgreSQL) — Connection ID: <span class="inline-code">b2344295-5b62-44d9-b365-927a96f7e523</span><br/>
+      All 5 tables must be created before importing data or running server logics.
+    </div>
+
+    <h3>Table 1: <span class="inline-code">wns_seo_content_assets</span> — Main Asset Table</h3>
+    <pre><code>CREATE TABLE wns_seo_content_assets (
+  no                      INTEGER,
+  url                     TEXT NOT NULL,
+  asset_type              TEXT,
+  industry                TEXT,
+  function_area           TEXT,
+  published_date          TIMESTAMP,
+  auditor                 TEXT,
+  audit_date              DATE,
+
+  -- Category A: Content Depth & Quality (max 14)
+  a1_word_count           INTEGER DEFAULT 0,
+  a2_freshness            INTEGER DEFAULT 0,
+  a3_original_data        INTEGER DEFAULT 0,
+  a4_depth_of_insight     INTEGER DEFAULT 0,
+  a5_reading_level        INTEGER DEFAULT 0,
+  a6_author_byline        INTEGER DEFAULT 0,
+  a7_read_time_shown      INTEGER DEFAULT 0,
+
+  -- Category B: On-Page SEO (max 12)
+  b1_h1_tag               INTEGER DEFAULT 0,
+  b2_meta_title           INTEGER DEFAULT 0,
+  b3_meta_description     INTEGER DEFAULT 0,
+  b4_url_slug             INTEGER DEFAULT 0,
+  b5_internal_links       INTEGER DEFAULT 0,
+  b6_schema_markup        INTEGER DEFAULT 0,
+
+  -- Category C: AEO Structure (max 14)
+  c1_definition_block     INTEGER DEFAULT 0,
+  c2_faq_section          INTEGER DEFAULT 0,
+  c3_lists_tables         INTEGER DEFAULT 0,
+  c4_answer_ready_passages INTEGER DEFAULT 0,
+  c5_named_entities       INTEGER DEFAULT 0,
+  c6_speakable_content    INTEGER DEFAULT 0,
+  c7_multimedia           INTEGER DEFAULT 0,
+
+  -- Category D: Authority & Trust (max 8)
+  d1_third_party_validation INTEGER DEFAULT 0,
+  d2_client_proof_points  INTEGER DEFAULT 0,
+  d3_regulatory_refs      INTEGER DEFAULT 0,
+  d4_industry_depth       INTEGER DEFAULT 0,
+
+  -- Category E: UX & Engagement (max 6)
+  e1_cta_quality          INTEGER DEFAULT 0,
+  e2_related_content      INTEGER DEFAULT 0,
+  e3_mobile_page_exp      INTEGER DEFAULT 0,
+
+  -- Category F: WNS Brand Signals (max 6)
+  f1_wns_framework        INTEGER DEFAULT 0,
+  f2_quantified_outcome   INTEGER DEFAULT 0,
+  f3_wns_tool_platform    INTEGER DEFAULT 0,
+
+  -- Computed totals
+  cat_a_score             INTEGER DEFAULT 0,
+  cat_b_score             INTEGER DEFAULT 0,
+  cat_c_score             INTEGER DEFAULT 0,
+  cat_d_score             INTEGER DEFAULT 0,
+  cat_e_score             INTEGER DEFAULT 0,
+  cat_f_score             INTEGER DEFAULT 0,
+  total_score             INTEGER DEFAULT 0,
+
+  -- Classification
+  band                    TEXT,          -- Elite / Strong / Average / Weak / Critical
+  priority_action         TEXT,
+  notes_recommendations   TEXT,
+
+  -- Crawler metadata
+  crawler_status          TEXT DEFAULT 'pending',  -- pending / crawled / failed / removed
+  http_status             INTEGER,
+  last_crawled_at         TIMESTAMP,
+  load_time_ms            INTEGER,
+
+  CONSTRAINT wns_seo_content_assets_url_key UNIQUE (url)
+);</code></pre>
+
+    <h3>Table 2: <span class="inline-code">wns_seo_crawl_history</span> — Score Snapshots Over Time</h3>
+    <pre><code>CREATE TABLE wns_seo_crawl_history (
+  id              SERIAL PRIMARY KEY,
+  url             TEXT NOT NULL,
+  crawled_at      TIMESTAMP NOT NULL DEFAULT NOW(),
+  total_score     INTEGER,
+  band            TEXT,
+  cat_a_score     INTEGER,
+  cat_b_score     INTEGER,
+  cat_c_score     INTEGER,
+  cat_d_score     INTEGER,
+  cat_e_score     INTEGER,
+  cat_f_score     INTEGER,
+  http_status     INTEGER,
+  load_time_ms    INTEGER
+);
+CREATE INDEX idx_crawl_history_url ON wns_seo_crawl_history(url);
+CREATE INDEX idx_crawl_history_crawled_at ON wns_seo_crawl_history(crawled_at);</code></pre>
+
+    <h3>Table 3: <span class="inline-code">wns_seo_change_log</span> — Change Detection Log</h3>
+    <pre><code>CREATE TABLE wns_seo_change_log (
+  id              SERIAL PRIMARY KEY,
+  url             TEXT NOT NULL,
+  detected_at     TIMESTAMP NOT NULL DEFAULT NOW(),
+  change_type     TEXT NOT NULL,
+  -- Values: seo_improvement | seo_regression | band_change | new_page | page_removed
+  field_name      TEXT,
+  old_value       TEXT,
+  new_value       TEXT,
+  score_delta     INTEGER,   -- positive = improvement, negative = regression
+  severity        TEXT,      -- critical | warning | info
+  notes           TEXT
+);
+CREATE INDEX idx_change_log_url ON wns_seo_change_log(url);
+CREATE INDEX idx_change_log_detected_at ON wns_seo_change_log(detected_at DESC);</code></pre>
+
+    <h3>Table 4: <span class="inline-code">wns_seo_crawl_jobs</span> — Crawler Job Tracking</h3>
+    <pre><code>CREATE TABLE wns_seo_crawl_jobs (
+  id              SERIAL PRIMARY KEY,
+  job_type        TEXT NOT NULL,       -- full | incremental
+  status          TEXT NOT NULL,       -- running | completed | failed
+  started_at      TIMESTAMP DEFAULT NOW(),
+  completed_at    TIMESTAMP,
+  total_urls      INTEGER DEFAULT 0,
+  crawled_urls    INTEGER DEFAULT 0,
+  failed_urls     INTEGER DEFAULT 0,
+  changed_urls    INTEGER DEFAULT 0,
+  triggered_by    TEXT DEFAULT 'manual'  -- manual | scheduler
+);</code></pre>
+
+    <h3>Table 5: <span class="inline-code">wns_seo_scoring_logic</span> — Scoring Framework Reference</h3>
+    <pre><code>CREATE TABLE wns_seo_scoring_logic (
+  id      SERIAL PRIMARY KEY,
+  label   TEXT,
+  col2    TEXT,
+  col3    TEXT,
+  col4    TEXT,
+  col5    TEXT,
+  col6    TEXT
+);
+-- Populated with the scoring rubric, band definitions,
+-- and interpretation guidance data from the audit spreadsheet.</code></pre>
+  </section>
+
+  <!-- DASHBOARD PAGES -->
+  <section id="pages">
+    <h2>🖥️ Dashboard Pages (4 Pages)</h2>
+
+    <div class="card">
+      <h3>Page 1 — Home Dashboard &nbsp;<span class="inline-code">/</span> &nbsp;→ <span class="inline-code">src/pages/home.tsx</span></h3>
+      <p>Central command center — live KPIs, charts, and the full 832-page scorecard table.</p>
+      <table>
+        <tr><th>Section</th><th>Description</th><th>Server Logic Used</th></tr>
+        <tr><td>🔴 Live Status Bar</td><td>Pulsing LIVE indicator + last-sync countdown + poll interval</td><td>—</td></tr>
+        <tr><td>🚨 Alerts Panel</td><td>Critical issues, score drops, regressions in real time</td><td>change-log-feed</td></tr>
+        <tr><td>📊 KPI Cards</td><td>Total pages · Avg score · AI-ready % · Critical pages (animated counters, ↑↓)</td><td>seo-aeo-kpi-summary</td></tr>
+        <tr><td>🕸️ Radar Chart</td><td>Average scores across all 6 categories (A–F)</td><td>seo-aeo-category-scores</td></tr>
+        <tr><td>📊 Band Distribution</td><td>Count/percentage per band (Elite→Critical)</td><td>seo-aeo-score-band-distribution</td></tr>
+        <tr><td>📈 Category Performance</td><td>Category A–F avg vs max possible bar chart</td><td>seo-aeo-category-scores</td></tr>
+        <tr><td>🏭 Asset Type Breakdown</td><td>Scores by content type (Article, Blog, etc.)</td><td>seo-aeo-scores-by-asset-type</td></tr>
+        <tr><td>🌐 Industry Breakdown</td><td>Scores by industry vertical (38+ verticals)</td><td>seo-aeo-scores-by-industry</td></tr>
+        <tr><td>📅 Publishing Trend</td><td>Monthly volume + avg score over time</td><td>seo-aeo-publishing-trend</td></tr>
+        <tr><td>📋 Scorecard Table</td><td>All 832 pages with A–F scores, band, ↑↓ indicators, row flash, filters</td><td>seo-aeo-asset-scorecard</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Page 2 — Crawler Control Center &nbsp;<span class="inline-code">/crawler</span> &nbsp;→ <span class="inline-code">src/pages/crawler.tsx</span></h3>
+      <p>Monitor and trigger crawl jobs, view live progress and history.</p>
+      <table>
+        <tr><th>Section</th><th>Description</th><th>Server Logic Used</th></tr>
+        <tr><td>Crawler Stats</td><td>Total / crawled / pending / failed page counts + coverage %</td><td>crawler-stats</td></tr>
+        <tr><td>Active Job Progress</td><td>Progress bar for running crawl job</td><td>crawler-jobs</td></tr>
+        <tr><td>Start Crawl Button</td><td>Trigger full or incremental crawl (calls crawler API)</td><td>—</td></tr>
+        <tr><td>Job History Table</td><td>Recent 20 crawl jobs with status, timing, counts</td><td>crawler-jobs</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Page 3 — Changes Feed &nbsp;<span class="inline-code">/changes</span> &nbsp;→ <span class="inline-code">src/pages/changes.tsx</span></h3>
+      <p>Real-time log of all detected changes between crawl runs.</p>
+      <table>
+        <tr><th>Section</th><th>Description</th><th>Server Logic Used</th></tr>
+        <tr><td>Stats Header</td><td>Improvements / regressions / new pages / removed pages counts</td><td>change-log-stats</td></tr>
+        <tr><td>Filter: Severity</td><td>Filter by critical / warning / info</td><td>change-log-feed</td></tr>
+        <tr><td>Filter: Change Type</td><td>seo_improvement / seo_regression / band_change / new_page / page_removed</td><td>change-log-feed</td></tr>
+        <tr><td>Change Feed</td><td>Scrollable list of changes with URL, delta, old→new value, timestamp</td><td>change-log-feed</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Page 4 — Page Inspector &nbsp;<span class="inline-code">/inspector</span> &nbsp;→ <span class="inline-code">src/pages/inspector.tsx</span></h3>
+      <p>Deep-dive into a single page's scores and history trend.</p>
+      <table>
+        <tr><th>Section</th><th>Description</th><th>Server Logic Used</th></tr>
+        <tr><td>Page Search</td><td>Autocomplete by URL / asset type / industry</td><td>page-search</td></tr>
+        <tr><td>Parameter Breakdown</td><td>All 30 individual scores (A1–F3) with visual bars</td><td>page-inspector</td></tr>
+        <tr><td>Category Totals</td><td>A–F category scores with progress bars vs. max</td><td>page-inspector</td></tr>
+        <tr><td>Score History Chart</td><td>Total score trend over time (line chart)</td><td>page-score-history</td></tr>
+        <tr><td>Crawler Metadata</td><td>HTTP status, load time, last crawled timestamp</td><td>page-inspector</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- SERVER LOGICS -->
+  <section id="serverlogics">
+    <h2>⚙️ Server Logics — All 13 Endpoints</h2>
+    <div class="info-box">
+      <strong>How to create:</strong> In Squadbase, go to <strong>Server Logics → New</strong> and paste each SQL query below. Set the connection to your Squadbase DB. The slug (file name) must match exactly as shown.
+    </div>
+
+    <!-- 1 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">seo-aeo-kpi-summary</span>
+        <span><span class="band strong">No params</span> &nbsp; Cache: 300s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Top-level KPI metrics for the dashboard header — total pages, average score, AI-ready %, critical pages count.</p>
+        <pre><code>SELECT
+    COUNT(*) AS total_pages,
+    ROUND(AVG(total_score), 1) AS avg_total_score,
+    ROUND(AVG(total_score) * 100.0 / 60, 1) AS avg_score_pct,
+    ROUND(AVG(cat_a_score), 1) AS avg_cat_a,
+    ROUND(AVG(cat_b_score), 1) AS avg_cat_b,
+    ROUND(AVG(cat_c_score), 1) AS avg_cat_c,
+    ROUND(AVG(cat_d_score), 1) AS avg_cat_d,
+    ROUND(AVG(cat_e_score), 1) AS avg_cat_e,
+    ROUND(AVG(cat_f_score), 1) AS avg_cat_f,
+    SUM(CASE WHEN band IN ('Elite','Strong') THEN 1 ELSE 0 END) AS ai_ready_pages,
+    ROUND(SUM(CASE WHEN band IN ('Elite','Strong') THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 1) AS ai_ready_pct,
+    SUM(CASE WHEN band = 'Critical' AND total_score > 0 THEN 1 ELSE 0 END) AS critical_pages,
+    ROUND(SUM(CASE WHEN band = 'Critical' AND total_score > 0 THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 1) AS critical_pct
+FROM wns_seo_content_assets
+WHERE crawler_status != 'removed'</code></pre>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">seo-aeo-asset-scorecard</span>
+        <span><span class="param-tag">asset_type (default: all)</span><span class="param-tag">band (default: all)</span> &nbsp; Cache: 120s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Filterable list of all audited pages with full A–F score breakdown. Used for the main scorecard table.</p>
+        <pre><code>SELECT
+    no, url, asset_type, industry, function_area, published_date,
+    total_score, cat_a_score, cat_b_score, cat_c_score,
+    cat_d_score, cat_e_score, cat_f_score,
+    band, priority_action, crawler_status, last_crawled_at
+FROM wns_seo_content_assets
+WHERE
+    crawler_status != 'removed'
+    AND ({{asset_type}} = 'all' OR asset_type = {{asset_type}})
+    AND ({{band}} = 'all' OR band = {{band}})
+ORDER BY total_score DESC, no ASC
+LIMIT 200</code></pre>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">seo-aeo-category-scores</span>
+        <span><span class="band strong">No params</span> &nbsp; Cache: 300s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Average scores per category (A–F) with max possible scores. Powers radar chart and category performance bar chart.</p>
+        <pre><code>SELECT 'A: Content Depth & Quality' AS category, 14 AS max_score,
+    ROUND(AVG(cat_a_score), 2) AS avg_score,
+    ROUND(AVG(cat_a_score) * 100.0 / 14, 1) AS avg_pct
+FROM wns_seo_content_assets WHERE crawler_status != 'removed' AND total_score > 0
+UNION ALL
+SELECT 'B: On-Page SEO', 12, ROUND(AVG(cat_b_score), 2), ROUND(AVG(cat_b_score) * 100.0 / 12, 1)
+FROM wns_seo_content_assets WHERE crawler_status != 'removed' AND total_score > 0
+UNION ALL
+SELECT 'C: AEO Structure', 14, ROUND(AVG(cat_c_score), 2), ROUND(AVG(cat_c_score) * 100.0 / 14, 1)
+FROM wns_seo_content_assets WHERE crawler_status != 'removed' AND total_score > 0
+UNION ALL
+SELECT 'D: Authority & Trust', 8, ROUND(AVG(cat_d_score), 2), ROUND(AVG(cat_d_score) * 100.0 / 8, 1)
+FROM wns_seo_content_assets WHERE crawler_status != 'removed' AND total_score > 0
+UNION ALL
+SELECT 'E: UX & Engagement', 6, ROUND(AVG(cat_e_score), 2), ROUND(AVG(cat_e_score) * 100.0 / 6, 1)
+FROM wns_seo_content_assets WHERE crawler_status != 'removed' AND total_score > 0
+UNION ALL
+SELECT 'F: WNS Brand Signals', 6, ROUND(AVG(cat_f_score), 2), ROUND(AVG(cat_f_score) * 100.0 / 6, 1)
+FROM wns_seo_content_assets WHERE crawler_status != 'removed' AND total_score > 0
+ORDER BY category</code></pre>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">seo-aeo-score-band-distribution</span>
+        <span><span class="band strong">No params</span> &nbsp; Cache: 300s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Count and percentage of pages per band (Elite → Critical). Powers the band distribution chart.</p>
+        <pre><code>SELECT
+    band,
+    COUNT(*) AS page_count,
+    ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 1) AS pct_of_total,
+    ROUND(AVG(total_score), 1) AS avg_total_score,
+    MIN(total_score) AS min_score,
+    MAX(total_score) AS max_score,
+    priority_action
+FROM wns_seo_content_assets
+WHERE crawler_status != 'removed' AND total_score > 0
+GROUP BY band, priority_action
+ORDER BY
+    CASE band
+        WHEN 'Elite'    THEN 1
+        WHEN 'Strong'   THEN 2
+        WHEN 'Average'  THEN 3
+        WHEN 'Weak'     THEN 4
+        WHEN 'Critical' THEN 5
+        ELSE 6
+    END</code></pre>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">seo-aeo-scores-by-asset-type</span>
+        <span><span class="band strong">No params</span> &nbsp; Cache: 300s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Average total score and A–F category scores broken down by content type (Article, Blog, Case Study, etc.).</p>
+        <pre><code>SELECT
+    asset_type,
+    COUNT(*) AS page_count,
+    ROUND(AVG(total_score), 1) AS avg_total_score,
+    ROUND(AVG(cat_a_score), 1) AS avg_cat_a,
+    ROUND(AVG(cat_b_score), 1) AS avg_cat_b,
+    ROUND(AVG(cat_c_score), 1) AS avg_cat_c,
+    ROUND(AVG(cat_d_score), 1) AS avg_cat_d,
+    ROUND(AVG(cat_e_score), 1) AS avg_cat_e,
+    ROUND(AVG(cat_f_score), 1) AS avg_cat_f,
+    SUM(CASE WHEN band = 'Elite'    THEN 1 ELSE 0 END) AS elite_count,
+    SUM(CASE WHEN band = 'Strong'   THEN 1 ELSE 0 END) AS strong_count,
+    SUM(CASE WHEN band = 'Average'  THEN 1 ELSE 0 END) AS average_count,
+    SUM(CASE WHEN band = 'Weak'     THEN 1 ELSE 0 END) AS weak_count,
+    SUM(CASE WHEN band = 'Critical' THEN 1 ELSE 0 END) AS critical_count
+FROM wns_seo_content_assets
+GROUP BY asset_type
+ORDER BY avg_total_score DESC</code></pre>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">seo-aeo-scores-by-industry</span>
+        <span><span class="band strong">No params</span> &nbsp; Cache: 300s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Scores broken down by industry vertical. Shows which sectors need the most SEO/AEO attention.</p>
+        <pre><code>SELECT
+    COALESCE(industry, 'Unknown') AS industry,
+    COUNT(*) AS page_count,
+    ROUND(AVG(total_score), 1) AS avg_total_score,
+    SUM(CASE WHEN band = 'Elite'    THEN 1 ELSE 0 END) AS elite_count,
+    SUM(CASE WHEN band = 'Strong'   THEN 1 ELSE 0 END) AS strong_count,
+    SUM(CASE WHEN band = 'Average'  THEN 1 ELSE 0 END) AS average_count,
+    SUM(CASE WHEN band = 'Weak'     THEN 1 ELSE 0 END) AS weak_count,
+    SUM(CASE WHEN band = 'Critical' THEN 1 ELSE 0 END) AS critical_count
+FROM wns_seo_content_assets
+GROUP BY industry
+HAVING COUNT(*) >= 3
+ORDER BY page_count DESC
+LIMIT 30</code></pre>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">seo-aeo-publishing-trend</span>
+        <span><span class="band strong">No params</span> &nbsp; Cache: 300s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Monthly publishing volume and average scores over time. Used for the trend chart.</p>
+        <pre><code>SELECT
+    TO_CHAR(DATE_TRUNC('month', published_date), 'YYYY-MM') AS publish_month,
+    COUNT(*) AS pages_published,
+    ROUND(AVG(total_score), 1) AS avg_total_score,
+    SUM(CASE WHEN band = 'Elite'    THEN 1 ELSE 0 END) AS elite_count,
+    SUM(CASE WHEN band = 'Strong'   THEN 1 ELSE 0 END) AS strong_count,
+    SUM(CASE WHEN band = 'Average'  THEN 1 ELSE 0 END) AS average_count,
+    SUM(CASE WHEN band = 'Weak'     THEN 1 ELSE 0 END) AS weak_count,
+    SUM(CASE WHEN band = 'Critical' THEN 1 ELSE 0 END) AS critical_count
+FROM wns_seo_content_assets
+WHERE published_date IS NOT NULL
+GROUP BY DATE_TRUNC('month', published_date)
+ORDER BY DATE_TRUNC('month', published_date) DESC
+LIMIT 36</code></pre>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">seo-aeo-scoring-framework</span>
+        <span><span class="band strong">No params</span> &nbsp; Cache: 600s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Returns the full scoring rubric, band definitions, and criteria from the scoring logic reference table.</p>
+        <pre><code>SELECT
+    label   AS score_range_or_criterion,
+    col2    AS band_label_or_score,
+    col3    AS priority_action,
+    col4    AS interpretation,
+    col5    AS seo_aeo_relevance,
+    col6    AS why_it_matters
+FROM wns_seo_scoring_logic
+WHERE label IS NOT NULL
+ORDER BY ctid</code></pre>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">crawler-stats</span>
+        <span><span class="band strong">No params</span> &nbsp; Cache: 15s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Overall crawler status — total/crawled/pending/failed counts + last crawl time. Powers the Crawler Control Center status panel.</p>
+        <pre><code>SELECT
+    COUNT(*) AS total_urls,
+    COUNT(CASE WHEN crawler_status = 'crawled' THEN 1 END) AS crawled_count,
+    COUNT(CASE WHEN crawler_status = 'pending' OR crawler_status IS NULL THEN 1 END) AS pending_count,
+    COUNT(CASE WHEN crawler_status = 'failed' THEN 1 END) AS failed_count,
+    COUNT(CASE WHEN total_score > 0 THEN 1 END) AS scored_count,
+    MAX(last_crawled_at) AS last_crawled_at,
+    ROUND(COUNT(CASE WHEN crawler_status = 'crawled' THEN 1 END) * 100.0 / NULLIF(COUNT(*), 0), 1) AS crawl_pct
+FROM wns_seo_content_assets</code></pre>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">crawler-jobs</span>
+        <span><span class="band strong">No params</span> &nbsp; Cache: 10s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Recent 20 crawl jobs with status, progress, and timing. Powers the job history table and active job progress bar.</p>
+        <pre><code>SELECT
+    id, job_type, status, started_at, completed_at,
+    total_urls, crawled_urls, failed_urls, changed_urls, triggered_by,
+    ROUND(EXTRACT(EPOCH FROM (COALESCE(completed_at, NOW()) - started_at)) / 60, 1) AS duration_minutes
+FROM wns_seo_crawl_jobs
+ORDER BY started_at DESC NULLS LAST
+LIMIT 20</code></pre>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">change-log-feed</span>
+        <span><span class="param-tag">severity (default: all)</span><span class="param-tag">change_type (default: all)</span> &nbsp; Cache: 15s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Recent 200 change log entries, filterable by severity and change type. Powers the Changes Feed page.</p>
+        <pre><code>SELECT
+    c.id, c.url, c.detected_at, c.change_type, c.field_name,
+    c.old_value, c.new_value, c.score_delta, c.severity, c.notes,
+    a.asset_type, a.band, a.total_score
+FROM wns_seo_change_log c
+LEFT JOIN wns_seo_content_assets a ON a.url = c.url
+WHERE
+    ({{severity}} = 'all' OR c.severity = {{severity}})
+    AND ({{change_type}} = 'all' OR c.change_type = {{change_type}})
+ORDER BY c.detected_at DESC
+LIMIT 200</code></pre>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">change-log-stats</span>
+        <span><span class="band strong">No params</span> &nbsp; Cache: 15s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Aggregated change counts by type and severity. Powers the stats header row on the Changes Feed page.</p>
+        <pre><code>SELECT
+    COUNT(*) AS total_changes,
+    COUNT(CASE WHEN change_type = 'seo_improvement' THEN 1 END) AS improvements,
+    COUNT(CASE WHEN change_type = 'seo_regression'  THEN 1 END) AS regressions,
+    COUNT(CASE WHEN change_type = 'new_page'        THEN 1 END) AS new_pages,
+    COUNT(CASE WHEN change_type = 'page_removed'    THEN 1 END) AS removed_pages,
+    COUNT(CASE WHEN change_type = 'band_change'     THEN 1 END) AS band_changes,
+    COUNT(CASE WHEN severity = 'critical'           THEN 1 END) AS critical_count,
+    COUNT(CASE WHEN severity = 'warning'            THEN 1 END) AS warning_count,
+    MAX(detected_at) AS last_change_at
+FROM wns_seo_change_log</code></pre>
+      </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">page-inspector</span>
+        <span><span class="param-tag">url (required)</span> &nbsp; Cache: 30s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Full parameter breakdown for a single page by URL — all 30 individual parameter scores, category totals, band, and crawler metadata.</p>
+        <pre><code>SELECT
+    no, url, asset_type, industry, function_area, published_date,
+    auditor, audit_date,
+    a1_word_count, a2_freshness, a3_original_data, a4_depth_of_insight,
+    a5_reading_level, a6_author_byline, a7_read_time_shown,
+    b1_h1_tag, b2_meta_title, b3_meta_description, b4_url_slug,
+    b5_internal_links, b6_schema_markup,
+    c1_definition_block, c2_faq_section, c3_lists_tables,
+    c4_answer_ready_passages, c5_named_entities, c6_speakable_content, c7_multimedia,
+    d1_third_party_validation, d2_client_proof_points,
+    d3_regulatory_refs, d4_industry_depth,
+    e1_cta_quality, e2_related_content, e3_mobile_page_exp,
+    f1_wns_framework, f2_quantified_outcome, f3_wns_tool_platform,
+    cat_a_score, cat_b_score, cat_c_score, cat_d_score, cat_e_score, cat_f_score,
+    total_score, band, priority_action, notes_recommendations,
+    crawler_status, http_status, last_crawled_at, load_time_ms
+FROM wns_seo_content_assets
+WHERE url = {{url}}
+LIMIT 1</code></pre>
+      </div>
+    </div>
+
+    <!-- 14 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">page-score-history</span>
+        <span><span class="param-tag">url (required)</span> &nbsp; Cache: 30s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Score history over time for a single page. Used to draw the trend line chart in the Page Inspector.</p>
+        <pre><code>SELECT
+    crawled_at, total_score, band,
+    cat_a_score, cat_b_score, cat_c_score,
+    cat_d_score, cat_e_score, cat_f_score,
+    http_status, load_time_ms
+FROM wns_seo_crawl_history
+WHERE url = {{url}}
+ORDER BY crawled_at ASC
+LIMIT 50</code></pre>
+      </div>
+    </div>
+
+    <!-- 15 -->
+    <div class="logic-card">
+      <div class="logic-header">
+        <span class="logic-slug">page-search</span>
+        <span><span class="param-tag">search (default: %%)</span> &nbsp; Cache: 60s</span>
+      </div>
+      <div class="logic-body">
+        <p><strong>Purpose:</strong> Autocomplete search for the Page Inspector — searches by URL, asset type, or industry. Wrap search value with % wildcards in the frontend (e.g., <span class="inline-code">%keyword%</span>).</p>
+        <pre><code>SELECT
+    no, url, asset_type, industry,
+    total_score, band, crawler_status, last_crawled_at
+FROM wns_seo_content_assets
+WHERE
+    url ILIKE {{search}}
+    OR asset_type ILIKE {{search}}
+    OR industry ILIKE {{search}}
+ORDER BY total_score DESC
+LIMIT 50</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section id="architecture">
+    <h2>🏗️ System Architecture</h2>
+
+    <div class="arch">┌────────────────────────────────────────────────────────────┐
+│                  React Dashboard (Squadbase)                │
+│                                                              │
+│  useLiveData Hook (src/hooks/use-live-data.ts)               │
+│  ├── Polls every 30 seconds via TanStack Query               │
+│  ├── Detects data changes via hash comparison                │
+│  ├── Tracks "Last updated X seconds ago" timestamps          │
+│  ├── Triggers animated counters on change (↑↓)              │
+│  ├── Flashes table rows green (improve) / red (decline)      │
+│  └── Ready for WebSocket/SSE swap without UI changes         │
+│                                                              │
+│  Pages: / | /crawler | /changes | /inspector                 │
+└──────────────────────┬─────────────────────────────────────┘
+                       │  POST /api/server-logic/:slug
+                       │  (every 30 seconds per section)
+┌──────────────────────▼─────────────────────────────────────┐
+│              Squadbase Server Logics (Hono)                  │
+│              13 SQL endpoints (see section above)            │
+│              Connection: Squadbase DB (PostgreSQL)           │
+└──────────────────────┬─────────────────────────────────────┘
+                       │  SQL queries
+┌──────────────────────▼─────────────────────────────────────┐
+│                   PostgreSQL Database                        │
+│  ├── wns_seo_content_assets   (832 pages + all scores)      │
+│  ├── wns_seo_crawl_history    (score snapshots over time)   │
+│  ├── wns_seo_change_log       (detected changes per crawl)  │
+│  ├── wns_seo_crawl_jobs       (job tracking + progress)     │
+│  └── wns_seo_scoring_logic    (rubric reference data)       │
+└──────────────────────┬─────────────────────────────────────┘
+                       │  Upserts scores + writes history
+                       │  Writes change log entries
+┌──────────────────────▼─────────────────────────────────────┐
+│              Node.js Crawler (TypeScript)                    │
+│  GitHub: github.com/akshat-s3cloudhub/seo-crawler           │
+│  Hosted: Railway (cloud, auto-scheduled)                     │
+│                                                              │
+│  ├── Playwright  — fetches JS-rendered pages                 │
+│  ├── Cheerio     — parses HTML, extracts parameters          │
+│  ├── Scoring Engine — applies 60-pt rubric (A1–F3)          │
+│  ├── Change Detector — compares old vs new scores           │
+│  └── Cron Schedule:                                          │
+│       Full crawl:        Every Sunday   @ 02:00 AM           │
+│       Incremental crawl: Every day      @ 03:00 AM           │
+└────────────────────────────────────────────────────────────┘</div>
+
+    <h3>Live Data Flow</h3>
+    <table>
+      <tr><th>Event</th><th>What Happens</th><th>Dashboard Response</th></tr>
+      <tr><td>Page opens</td><td>Initial data fetch for all sections</td><td>All charts + table populate</td></tr>
+      <tr><td>Every 30 seconds</td><td>All queries re-run via polling hook</td><td>Sections refresh silently</td></tr>
+      <tr><td>Score change detected</td><td>Hash mismatch triggers change flag</td><td>KPI counter animates, ↑↓ shown</td></tr>
+      <tr><td>Table row score changes</td><td>Row-level delta tracked</td><td>Row flashes green or red</td></tr>
+      <tr><td>New critical page</td><td>Alerts panel query detects it</td><td>Alert card appears at top</td></tr>
+      <tr><td>Crawler finishes a job</td><td>crawl_jobs updated to "completed"</td><td>Crawler page shows completion</td></tr>
+    </table>
+  </section>
+
+  <!-- CRAWLER -->
+  <section id="crawler">
+    <h2>🕷️ Crawler System</h2>
+
+    <div class="success-box">
+      <strong>GitHub Repository:</strong> <a href="https://github.com/akshat-s3cloudhub/seo-crawler" target="_blank">https://github.com/akshat-s3cloudhub/seo-crawler</a><br/>
+      Clone this to run or deploy the crawler on the client's infrastructure.
+    </div>
+
+    <h3>Tech Stack</h3>
+    <table>
+      <tr><th>Library</th><th>Purpose</th></tr>
+      <tr><td>Node.js + TypeScript</td><td>Crawler runtime</td></tr>
+      <tr><td>Playwright</td><td>Headless browser — handles JS-rendered pages</td></tr>
+      <tr><td>Cheerio</td><td>HTML parser — extracts SEO/AEO parameters</td></tr>
+      <tr><td>pg (node-postgres)</td><td>PostgreSQL connection for writing scores</td></tr>
+      <tr><td>ts-node</td><td>TypeScript execution without compile step</td></tr>
+    </table>
+
+    <h3>What the Crawler Does (Per Page)</h3>
+    <ol class="steps">
+      <li>Fetches the page URL using Playwright (handles JavaScript rendering, SPAs)</li>
+      <li>Passes the rendered HTML to Cheerio for parsing</li>
+      <li>Extracts all 30 SEO/AEO parameters (A1–F3) from the HTML structure</li>
+      <li>Applies the 60-point scoring rubric to calculate category scores (A–F)</li>
+      <li>Classifies the page into a band (Elite / Strong / Average / Weak / Critical)</li>
+      <li>Upserts the row in <span class="inline-code">wns_seo_content_assets</span> (update if exists, insert if new)</li>
+      <li>Saves a timestamped snapshot to <span class="inline-code">wns_seo_crawl_history</span></li>
+      <li>Compares old vs new score — logs any change to <span class="inline-code">wns_seo_change_log</span></li>
+      <li>Updates the crawl job progress in <span class="inline-code">wns_seo_crawl_jobs</span></li>
+    </ol>
+
+    <h3>Running Locally (Quick Test)</h3>
+    <pre><code># Clone the repo
+git clone https://github.com/akshat-s3cloudhub/seo-crawler
+cd seo-crawler
+
+# Install dependencies
+npm install
+
+# Set your database URL
+export DATABASE_URL="postgresql://user:password@host:5432/dbname"
+
+# Run crawler (crawls all 832 pages, takes ~8 minutes)
+npx ts-node src/crawler.ts</code></pre>
+
+    <h3>Deploying to Railway (Production)</h3>
+    <ol class="steps">
+      <li>Go to <a href="https://railway.app" target="_blank">railway.app</a> → Create New Project → Deploy from GitHub Repo</li>
+      <li>Select the <strong>seo-crawler</strong> repository</li>
+      <li>In Railway settings, add environment variable: <span class="inline-code">DATABASE_URL</span> = your PostgreSQL connection string</li>
+      <li>In Railway Cron Jobs, create two schedules:<br/><br/>
+        <strong>Full Crawl:</strong> <span class="inline-code">0 2 * * 0</span> (Every Sunday at 2:00 AM)<br/>
+        <strong>Incremental Crawl:</strong> <span class="inline-code">0 3 * * *</span> (Every day at 3:00 AM)
+      </li>
+      <li>Deploy — Railway will auto-deploy on every git push to main</li>
+    </ol>
+
+    <h3>After First Crawl Completes</h3>
+    <table>
+      <tr><th>Dashboard Section</th><th>What You'll See</th></tr>
+      <tr><td>KPI Cards</td><td>Real average scores (not zeros)</td></tr>
+      <tr><td>Scorecard Table</td><td>All 832 pages with A–F scores and bands</td></tr>
+      <tr><td>Band Distribution Chart</td><td>Real Elite/Strong/Average/Weak/Critical counts</td></tr>
+      <tr><td>Alerts Panel</td><td>Critical pages (&lt;20 score) surfaced automatically</td></tr>
+      <tr><td>Changes Feed</td><td>All score changes since last crawl</td></tr>
+      <tr><td>Page Inspector</td><td>Score history trend for any page</td></tr>
+    </table>
+
+    <div class="warn-box">
+      <strong>Note on Failed Pages (248 pages):</strong> During the initial local crawl (March 2026), 248 out of 832 pages failed due to old <span class="inline-code">http://</span> URLs or malformed query strings — these are likely dead/moved pages on WNS.com. The crawler marks them as <span class="inline-code">crawler_status = 'failed'</span>. These should be investigated and either redirected or removed.
+    </div>
+  </section>
+
+  <!-- TRANSFER GUIDE -->
+  <section id="transfer">
+    <h2>📦 Transfer Guide — Setting Up on Client's Side</h2>
+
+    <div class="info-box">
+      <strong>Client starting point:</strong> No Squadbase account yet. Wants full project with all 832 pages and scores transferred.
+    </div>
+
+    <h3>Step 1 — Client Creates a Squadbase Account</h3>
+    <ol class="steps">
+      <li>Go to <a href="https://squadbase.com" target="_blank">squadbase.com</a> and sign up for an account</li>
+      <li>Create a new project (name it e.g. "WNS SEO Dashboard")</li>
+      <li>In the project, go to <strong>Connections</strong> → enable or create a <strong>Squadbase DB</strong> (built-in PostgreSQL)</li>
+      <li>Note down the connection string — you'll need it for the crawler and DB import</li>
+    </ol>
+
+    <h3>Step 2 — Export Database from Current Project (You Do This)</h3>
+    <pre><code># Option A: Using pg_dump (recommended — full export)
+pg_dump \
+  -h YOUR_CURRENT_HOST \
+  -U YOUR_CURRENT_USER \
+  -d YOUR_CURRENT_DB_NAME \
+  --no-owner \
+  --no-acl \
+  -F p \
+  -f wns_seo_full_export.sql
+
+# This creates a single .sql file containing:
+# - All 5 CREATE TABLE statements
+# - All 832 rows from wns_seo_content_assets
+# - All crawl history, change logs, crawl jobs
+# - All scoring logic reference data</code></pre>
+
+    <div class="warn-box">If you don't have direct DB access, contact Squadbase support to request a database export from your current project.</div>
+
+    <h3>Step 3 — Import Database into Client's Squadbase DB (Client Does This)</h3>
+    <pre><code># Import the SQL dump into the client's new database
+psql \
+  -h CLIENT_DB_HOST \
+  -U CLIENT_DB_USER \
+  -d CLIENT_DB_NAME \
+  -f wns_seo_full_export.sql
+
+# This recreates all 5 tables and imports all data instantly
+# Verify with:
+psql -h CLIENT_DB_HOST -U CLIENT_DB_USER -d CLIENT_DB_NAME \
+  -c "SELECT COUNT(*) FROM wns_seo_content_assets;"
+# Should return: 832</code></pre>
+
+    <h3>Step 4 — Create All 13 Server Logics (Client Does This)</h3>
+    <ol class="steps">
+      <li>In the Squadbase project, go to <strong>Server Logics</strong></li>
+      <li>Click <strong>New Server Logic</strong> for each of the 13 endpoints listed in this document</li>
+      <li>For each one: set the <strong>slug</strong> (file name), paste the <strong>SQL query</strong>, set the <strong>connection</strong> to the Squadbase DB, and configure the <strong>parameters</strong> and <strong>cache TTL</strong> as documented above</li>
+      <li>Test each server logic to confirm it returns data</li>
+    </ol>
+
+    <h3>Step 5 — Rebuild the 4 Dashboard Pages (Client Does This)</h3>
+    <ol class="steps">
+      <li>Create page <span class="inline-code">home.tsx</span> at path <span class="inline-code">/</span> — Main dashboard with KPIs, charts, scorecard table</li>
+      <li>Create page <span class="inline-code">crawler.tsx</span> at path <span class="inline-code">/crawler</span> — Crawler Control Center</li>
+      <li>Create page <span class="inline-code">changes.tsx</span> at path <span class="inline-code">/changes</span> — Changes Feed</li>
+      <li>Create page <span class="inline-code">inspector.tsx</span> at path <span class="inline-code">/inspector</span> — Page Inspector</li>
+      <li>Create the <span class="inline-code">useLiveData</span> hook at <span class="inline-code">src/hooks/use-live-data.ts</span> for 30-second auto-polling</li>
+      <li>Use EChartsWrapper for all charts, TanStack Table for the scorecard, and shadcn/ui components throughout</li>
+    </ol>
+
+    <h3>Step 6 — Deploy Crawler on Client's Railway Account</h3>
+    <ol class="steps">
+      <li>Client goes to <a href="https://railway.app" target="_blank">railway.app</a> and creates an account</li>
+      <li>New Project → Deploy from GitHub → select <span class="inline-code">akshat-s3cloudhub/seo-crawler</span></li>
+      <li>Add environment variable: <span class="inline-code">DATABASE_URL</span> = client's PostgreSQL connection string</li>
+      <li>Add Cron Job: <span class="inline-code">0 2 * * 0</span> (Full crawl, every Sunday 2 AM)</li>
+      <li>Add Cron Job: <span class="inline-code">0 3 * * *</span> (Incremental, every day 3 AM)</li>
+      <li>Deploy — crawler will start running on schedule</li>
+    </ol>
+
+    <h3>What to Hand Over to Client</h3>
+    <table>
+      <tr><th>Asset</th><th>Format</th><th>How to Transfer</th></tr>
+      <tr><td>Full Database (832 pages + scores)</td><td><span class="inline-code">.sql</span> dump file</td><td>Share via Google Drive / email / WeTransfer</td></tr>
+      <tr><td>Crawler Code</td><td>GitHub repository</td><td><a href="https://github.com/akshat-s3cloudhub/seo-crawler">github.com/akshat-s3cloudhub/seo-crawler</a></td></tr>
+      <tr><td>All Server Logic SQL Queries</td><td>This document</td><td>Copy-paste from Section 5 above</td></tr>
+      <tr><td>Database Schema</td><td>This document</td><td>Copy-paste from Section 3 above</td></tr>
+      <tr><td>Dashboard page specs</td><td>This document</td><td>Section 4 + Section 6 above</td></tr>
+    </table>
+
+    <div class="info-box">
+      <strong>💡 Pro Tip:</strong> Contact Squadbase support (via their in-app chat or website) and ask: <em>"Can you clone or migrate an existing project to a new account?"</em> — If they support project migration, this could save hours of manual setup.
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section id="checklist">
+    <h2>✅ Rebuild Checklist</h2>
+    <p>Use this checklist to confirm everything is set up correctly on the client's side:</p>
+
+    <h3>Database</h3>
+    <ul class="check">
+      <li>Squadbase account created and new project set up</li>
+      <li>Squadbase DB (PostgreSQL) connection created</li>
+      <li>Table <span class="inline-code">wns_seo_content_assets</span> created with all columns</li>
+      <li>Table <span class="inline-code">wns_seo_crawl_history</span> created</li>
+      <li>Table <span class="inline-code">wns_seo_change_log</span> created</li>
+      <li>Table <span class="inline-code">wns_seo_crawl_jobs</span> created</li>
+      <li>Table <span class="inline-code">wns_seo_scoring_logic</span> created</li>
+      <li>SQL dump imported — verify 832 rows in <span class="inline-code">wns_seo_content_assets</span></li>
+    </ul>
+
+    <h3>Server Logics (13 total)</h3>
+    <ul class="check">
+      <li>seo-aeo-kpi-summary — tested, returns 1 row</li>
+      <li>seo-aeo-asset-scorecard — tested, returns 200 rows</li>
+      <li>seo-aeo-category-scores — tested, returns 6 rows</li>
+      <li>seo-aeo-score-band-distribution — tested, returns 5 rows</li>
+      <li>seo-aeo-scores-by-asset-type — tested, returns rows by type</li>
+      <li>seo-aeo-scores-by-industry — tested, returns rows by industry</li>
+      <li>seo-aeo-publishing-trend — tested, returns monthly rows</li>
+      <li>seo-aeo-scoring-framework — tested, returns rubric rows</li>
+      <li>crawler-stats — tested, returns 1 row with counts</li>
+      <li>crawler-jobs — tested, returns job history</li>
+      <li>change-log-feed — tested with severity=all, change_type=all</li>
+      <li>change-log-stats — tested, returns 1 row with totals</li>
+      <li>page-inspector — tested with a sample URL</li>
+      <li>page-score-history — tested with a sample URL</li>
+      <li>page-search — tested with search term</li>
+    </ul>
+
+    <h3>Dashboard Pages</h3>
+    <ul class="check">
+      <li>Home page (<span class="inline-code">/</span>) — KPIs visible, charts rendering, scorecard table loading</li>
+      <li>Crawler page (<span class="inline-code">/crawler</span>) — Stats showing, job history visible</li>
+      <li>Changes page (<span class="inline-code">/changes</span>) — Change feed loading, filters working</li>
+      <li>Inspector page (<span class="inline-code">/inspector</span>) — Search working, parameter breakdown showing</li>
+      <li>useLiveData hook — 30-second polling working, "Live" indicator pulsing</li>
+      <li>All charts updating every 30 seconds</li>
+    </ul>
+
+    <h3>Crawler</h3>
+    <ul class="check">
+      <li>Railway account set up</li>
+      <li>Crawler repo connected to Railway</li>
+      <li>DATABASE_URL environment variable set</li>
+      <li>Full crawl cron: <span class="inline-code">0 2 * * 0</span> configured</li>
+      <li>Incremental crawl cron: <span class="inline-code">0 3 * * *</span> configured</li>
+      <li>First manual crawl triggered and completed successfully</li>
+      <li>Dashboard shows real scores after crawl</li>
+    </ul>
+  </section>
+
+</div>
+
+<footer>
+  <p>WNS.com SEO &amp; AEO Content Audit Dashboard — Complete Project Documentation</p>
+  <p>Prepared by RYVR Immersive Co. | March 2026 | Built on Squadbase</p>
+  <p style="margin-top:8px;opacity:.6;">This document contains all information needed to fully rebuild and deploy this project from scratch.</p>
+</footer>
+
+</body>
+</html>
